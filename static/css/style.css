@@ -1,0 +1,531 @@
+.header {
+    /* width: 80%; */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    background-color:#133657;
+    padding: 0 20px;
+    color: #ffffff;
+}
+
+.header-text {
+    display: flex;
+}
+
+.header-text :hover {
+    color: rgb(94, 163, 227);
+}
+
+.header-text li {
+    margin-left: 20px;
+    font-size: 15px;
+    padding-right: 30px;
+}
+
+body {
+  background-image: url("{% static 'images/11.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: aliceblue;
+  height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  background-attachment: fixed;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color:#133657;
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.cont{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(bg.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-left: 8% ;
+    padding-right: 8%;
+    box-sizing: border-box;
+} 
+.navvi{
+    height: 12%;
+    display: flex;
+    align-items: center;
+}
+.log{
+    width: 70px;
+    cursor: pointer;
+}
+nav{
+    flex: 1;
+    text-align: right;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 60px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+.row{
+    display: flex;
+    height: 88%;
+    align-items: center;
+}
+.col{
+    flex-basis: 50%;
+}
+h1{
+    color: #fff;
+    font-size: 100px;
+}
+
+button{
+    width: 280px;
+    color: #000;
+    font-size: 18px;
+    padding: 14px 0;
+    background: #b0c3ce;
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 30px;
+}
+a{
+    text-decoration: none;
+    color: #1B2631;
+}
+
+.card{
+    width: 200px;
+    height: 230px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 15px;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+}
+.card1{
+    background-image: url(1m.jpg);
+}
+.card2{
+    background-image: url(img1.png);
+    position: absolute;
+    top: 413px;
+    left: 970px;
+    height: 235px;
+    width: 200px;
+
+}
+.card3{
+    background-image: url(img2.jpg);
+}
+.card4{
+    background-image: url(img3.jpeg);
+}
+.card:hover{
+    transform: translateY(-10px);
+
+}
+header {
+    background-color:#E6B0AA;
+    border: 1px solid tan;
+    border-radius: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 97.5%;
+    height: 70px;
+    z-index: 1000;
+    transition: top 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 0 20px;
+}
+
+/* Стили для логотипа и текста */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Кнопки соц сетей */
+.social-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.social-icons a {
+    margin-right: 45px;
+}
+
+
+#photo{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 100px 0px 0px 0px;
+    max-width: 100%;
+    max-height: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+/* Стили для навигации */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 20px;
+    position: relative;
+}
+
+nav a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 18px;
+    margin: 13px;
+    font-family: 'Roboto', Arial, sans-serif;
+    position: relative;
+}
+
+nav a:hover {
+    color: rgb(94, 163, 227);
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #000000;
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+  /* Site info */
+.site-info h1{
+    text-align: center;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.block-container {
+    background-color: #F5CBA7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Стили для кнопки и анимации блеска */
+.block {
+    width: 250px;
+    height: 300px;
+    margin: 30px;
+    padding: 20px;
+    background: #ffffff;
+    color: #000000;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 20px 0px rgba(96, 96, 96, 0.2);
+    position: relative;
+    overflow: hidden; 
+    display: inline-block; 
+}
+
+.block .flare {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 45px;
+    transform: skewX(-45deg); 
+    left: -150%;
+    background: linear-gradient(90deg, rgba(211, 211, 211, 0.1), rgba(255, 255, 255, 0.4));
+    animation: flareAnimation 3s infinite linear; 
+}
+
+@keyframes flareAnimation {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+
+.block h2 {
+    font-size: 20px;
+    margin: 10px 0;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.block p {
+    font-size: 16px;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.block img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+/* Контент под фото */
+#content {
+    background-image:url(images/phon2.png) ;
+    width: 920px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border: 0.1px solid #d6d6d6;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    top: -100px;
+    box-shadow: 0px 50px 50px 0px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.column {
+    text-align: center;
+    flex: 1;
+}
+
+.column .content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.column img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+}
+
+.column p {
+    text-align: center;
+    margin: 20px 0; 
+}
+
+/* Стили для hero */
+.hero {
+    background-color: #d6d6d6;
+    display: flex;
+    background-size: cover; 
+    text-align: left;
+    color: #000000;
+    padding-top: 50px;
+}
+
+.hero-content {
+    flex: 1;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.hero-image {
+    height: 100%;
+    background-image: url('путь_к_вашему_изображению.jpg'); /* Замените путь на путь к вашему изображению */
+    background-size: cover; /* Растягиваем изображение на весь экран */
+    filter: brightness(70%);
+}
+
+.hero h1{
+    font-size: 50px;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.hero p{
+    font-size: 25px;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Стили для кнопки расчета */
+
+
+#result {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.show-calculator {
+    display: block;
+}
+
+
+
+/* Кнопка вычислить */
+.glow-on-hover-1 {
+    width: 400px;
+    height: 100px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before,
+.glow-on-hover-1:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover-1:active,
+.glow-on-hover:active {
+    color: #000;
+}
+
+.glow-on-hover-1:active:before,
+.glow-on-hover:active:before {
+    opacity: 0;
+}
+
+.glow-on-hover:hover:before,
+.glow-on-hover-1:hover:before {
+    opacity: 1;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    100% { background-position: 400% 0; }
+}
+
+/* Кнопка вверх */
+#scrollToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 110px;
+    right: 25px;
+    background-color: #17202A;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#scrollToTopButton:hover {
+    background-color: #3d3d3d;
+}
+
+/* Окно регистрации */
+
+
+/* Стили для футера */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #000000;
+    color: #fff;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+.coloredsa {
+    color: #7FB3D5;
+}

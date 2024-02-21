@@ -1,0 +1,240 @@
+{% load static %}
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Profile{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/pharm.css' %}">
+  <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/png">
+</head>
+
+<body>
+  <div class="header">
+    <h1>
+      <img src="/static/images/KazPharmEm.png" alt="KazPharm logo" height="100px" width="100px">
+    </h1>
+    <div class="header-text">
+      <li><a href="{% url 'index' %}">Главная</a></li>
+      <li><a href="{% url 'hospital_form' %}">Запись</a></li>
+      <li><a href="{% url 'about' %}">Больницы</a></li>
+      <li><a href="https://t.me/KazPharmAmbulanceBot">Контакты</a></li>
+
+      {% if request.user.is_authenticated %}
+      <li><a href="#"> {{ user.username }}</a></li>
+      <li><a href="{% url 'logout' %}">Выйти</a></li>
+      {% else %}
+
+      <li><a href="{% url 'logout' %}">Выйти</a></li>
+      <color="white">
+        <li><a href="{% url 'home' %}"></a> {{ user.username }}</a></li>
+        <!-- </font> -->
+        {% endif %}
+    </div>
+  </div>
+
+
+
+  <style>
+    .header {
+      /* width: 80%; */
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto;
+      background-color: #133657;
+      padding: 0 20px;
+      color: #ffffff;
+    }
+
+    .header-text {
+      display: flex;
+    }
+
+    .header-text :hover {
+      color: rgb(94, 163, 227);
+    }
+
+    .header-text li {
+      margin-left: 20px;
+      font-size: 15px;
+      padding-right: 30px;
+    }
+
+    body {
+      background-image: url("{% static 'images/11.jpg' %}");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      color: aliceblue;
+      height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      background-attachment: fixed;
+    }
+
+    .footer {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      text-align: center;
+      padding: 15px;
+      background-color: #000000;
+      color: #fff;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+
+
+    /* код для личного кабинета */
+    /* Overall form styling */
+    .container {
+      max-width: 500px;
+      /* Adjust width as needed */
+      margin: 40px auto;
+      font-family: sans-serif;
+    }
+
+    .row {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    /* Button styling */
+    .btn-info {
+      background-color: #133657;
+      /* Dark blue */
+      border-color: #0d263d;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+
+    /* Image styling */
+    .img-thumbnail {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      /* margin-bottom: 5px; */
+    }
+  </style>
+
+
+  <div class="content">
+    {% block content %}
+    ⠀⠀{{request.user.username}}
+    ⠀<a href="{% url 'schedule' %}">Записи приемов</a>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <h4 class="mt-3 mb-3">Профиль</h4><br>
+          <!-- <div class="col-lg-12 text-center">
+                      <img width="100" height="100"
+                           src=""
+                           class="img-thumbnail">
+                  </div> -->
+          <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="small mb-1" for="{{ form.email.id_for_label}}">Имя пользователя</label>
+                  {{ form.username }}
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="small mb-1" for="{{ form.email.id_for_label}}">
+                    Адрес электроннй почны
+                  </label>
+                  {{ form.email }}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-6">
+                <label class="small mb-1" for="{{ form.first_name.id_for_label}}">
+                  Имя
+                </label>
+                {{ form.first_name }}
+              </div>
+              <div class="col-lg-6">
+                <label class="small mb-1" for="{{ form.last_name.id_for_label}}">
+                  Фамилия
+                </label>
+                {{ form.last_name }}
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-12" style="margin-top: 33px;">
+
+                <a href="{% url 'home' %}"> <input class="btn btn-info btn-block" type="submit" value="Сохранить"></a>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  </div>
+
+  <div class="footer">
+    <p>&copy; KazPharm 2023</p>
+  </div>
+  </div>
+
+  <script>
+    const avatarInput = document.getElementById("avatar-input");
+    const profileImage = document.getElementById("profile-image");
+
+    avatarInput.addEventListener("change", function () {
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        profileImage.src = reader.result;
+      };
+
+      reader.readAsDataURL(avatarInput.files[0]);
+    });
+  </script>
+</body>
+
+</html>

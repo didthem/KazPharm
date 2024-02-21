@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li,
+a {
+    list-style: none;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+h2{
+    color: rgb(255, 255, 255);
+    margin-top: 95px;
+    margin-left: 40px;
+    font-size: 37px;
+}
+
+.wrapper h1{
+    text-align: center;
+    color: #133657;
+    margin-top: -19px;
+    margin-bottom: 10px;
+}
+  
+  .wrapper .input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .wrapper .input-group input {
+    border-radius: 0;
+    border: 1px solid #D1D1D1;
+    padding: 10px 15px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .wrapper .input-group label {
+    font-size: 0.8rem;
+    color: #424a52;
+  }
+  
+  .wrapper .btn {
+    background-color: #03A9F4;
+    color: #fff;
+    border-radius: 0;
+    padding: 10px 15px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+
+  
+  .wrapper a {
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+
+
+/* дизайн формы */
+
+.wrapper {
+    max-width: 350px;
+    color: #424a52;
+    min-height: 300px;
+    margin: 80px auto;
+    padding: 40px 35px 35px 35px;
+    background-color: rgba(218, 231, 241, 0.771);
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px rgba(0, 8, 16, 0.87)13px -13px 20px rgba(116, 120, 130, 0.654);
+    float: right;
+    width: 90%;
+    margin-top: -200px;
+    margin-right: 90px;
+  } */
+  
+  /* .main-agileinfo {
+    background-color: #fff; /* Белый фон для формы 
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  /* .agileits-top {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    width: 30%;
+  } */
+  
+  .agileits-top h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .agileits-top form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .agileits-top input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  .agileits-top input.email {
+    background-color: #f5f5f5; /* Светло-серый фон для поля email */
+  }
+  
+  .agileits-top input.w3lpass {
+    /* Пароль - отдельный стиль */
+    border-color: #ddd;
+  }
+  
+  .wthree-text label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  /* .wthree-text label span {
+    margin-left: 5px;
+  } */
+  
+  .wthree-text label.anim input {
+    /* Стиль галочки */
+    border-radius: 3px;
+    accent-color: #d06b22;
+  }
+  
+  .wthree-text label.anim input:checked ~ span {
+    font-weight: bold;
+    color: #133657; /* Зеленый цвет текста при выборе галочки */
+  }
+  
+  .agileits-top input[type="submit"] {
+    background-color: #133657;/* Зеленый цвет кнопки */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .agileits-top input[type="submit"]:hover {
+    background-color: #091b2b; /* Темнее при наведении */
+  }
+  
+  .agileits-top p {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  .agileits-top p a {
+    color: #133657; /* цвет ссылки */
+  }
+  
+  .form.errors {
+    border: 1px solid red; /* Красная рамка при ошибке */
+  }
+
+  

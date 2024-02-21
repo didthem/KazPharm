@@ -1,0 +1,554 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись</title>
+    <link rel="shortcut icon" href="/static/images/logo.png" type="image/png">
+</head>
+<body>
+<div class="header">
+  <p>
+    <img src="/static/images/KazPharmEm.png" alt="KazPharm logo" height="100px" width="100px">
+  </p>
+  <div class="header-text">
+
+    <li><a href="/">Главная</a></li>
+    <li><a href="/hospital_form/">Запись</a></li>
+    <li><a href="/about">Больницы</a></li>
+    <li><a href="https://t.me/KazPharmAmbulanceBot">Контакты</a></li>
+
+    
+            <li><a href="{% url 'home' %}"> {{request.user.username}}</a></li>
+            <li><a href="/logout/">Выйти</a></li>
+        
+  </div>
+</div><br><br>
+<style>
+body{
+    background-color: #bbbbbb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li,
+a {
+    list-style: none;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+
+    .header {
+    /* width: 80%; */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    background-color:#133657;
+    padding: 0 20px;
+    color: #ffffff;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header-text {
+    display: flex;
+}
+
+.header-text :hover {
+    color: rgb(94, 163, 227);
+}
+
+.header-text li {
+    margin-left: 20px;
+    font-size: 15px;
+    padding-right: 30px;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color:#133657;
+    color: #fff;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.footer p{
+    color: aliceblue;
+}
+        
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+
+
+/* Стили для карточек */
+.product-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.product {
+    background-color: #ffffff; /*цвет ячеек */
+    border: 1px solid #e1e1e1;
+    box-shadow: 10px 12px 14px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    transition: transform 0.3s;
+    text-align: center;
+    margin-right: 200px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.product:last-child {
+    margin-right: 0;
+    margin-bottom: 0;
+    /* Убираем расстояние снизу последней карточки */
+}
+
+.product h2 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.product p {
+    font-size: 14px;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Стили для модального окна */
+.modal {
+    background-color: tan;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: tan;
+    margin: 100px auto;
+    padding: 20px 50px;
+    border-radius: 5px;
+    width: 60%;
+    max-width: 500px;
+    /* Ширина модального окна, если экран слишком широкий */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Стиль для кнопки закрытия */
+.close {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+}
+
+.close:hover {
+    color: black;
+}
+
+/* Добавление стиля для кнопки закрытия */
+.close-button {
+    background: #f1f1f1;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #ddd;
+}
+
+
+/* Стиль для кнопок */
+.glow-on-hover {
+    width: 150px;
+    height: 30px;
+    border: none;
+    margin: 3px;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: linear-gradient(45deg, #ff5a00, #b2ff00, #00e6e6, #00bfff, #7b68ee, #ff5a00);
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:hover::before {
+    opacity: 1;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    100% { background-position: 400% 0; }
+}
+
+
+.glow-on-hover:active {
+    color: #000;
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Кнопка вверх */
+#scrollToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 110px;
+    right: 25px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#scrollToTopButton:hover {
+    background-color: #3d3d3d;
+}
+
+
+.coloredsa {
+    color: #7FB3D5;
+}
+p{
+    color: #000;
+}
+h1{
+    color: #000;
+}
+nav{
+    flex: 1;
+    text-align: right;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 60px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+}
+.coloreds {
+    color: #154360;
+}
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Tinos', serif;
+  }
+  p {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Tinos', serif;
+    font-size: 21px;
+  }
+    </style>
+    <center>
+    
+        <main>
+            <section class="products">
+                <div class="product-row">
+                    <div class="product">
+                        <h2>Mexel Health</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h1.avif' %}" width="200px" height="200px" alt="1">
+                        </div>
+                        <p class="price">Абылайхана, 42</p>
+                        <p class="price">+77172577440</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'mexel' %}">Доктора</a></button>
+                    </div>
+    
+                    <div class="product">
+                        <h2>Tumar clinic </h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/2h.jpg' %}" width="200px" height="200px"  alt="2">
+                        </div>
+                        <p class="price">Кабанбай батыр, 58Б</p>
+                        <p class="price">+77003007069</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'tumar' %}">Доктора</a></button>
+                    </div>
+                </div>
+    
+                <div class="product-row">
+                    <div class="product">
+                        <h2>Клиника Аланда</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h3.avif' %}" width="200px" height="200px" alt=" 3">
+                        </div>
+                        <p class="price">Тауелсиздик, 33</p>
+                        <p class="price">+77788701171</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'alanda' %}">Доктора</a></button>
+                    </div>
+    
+                    <div class="product">
+                        <h2>Медико-консультативный центр "Сенім-А"</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h4.jpg' %}" width="200px" height="200px" alt="4">
+                        </div>
+                        <p class="price">Габит Мусрепов, 10Б</p>
+                        <p class="price">+77078480177</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'senim' %}">Доктора</a></button>
+                    </div>
+                </div>
+
+                <div class="product-row">
+                    <div class="product">
+                        <h2>Поликлиника "CITY"</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h5.jpeg' %}" width="200px" height="200px" alt="5">
+                        </div>
+                        <p class="price">Аманжол Болекпаев, 5</p>
+                        <p class="price">+77719444400</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'city' %}">Доктора</a></button>
+                    </div>
+
+                <div class="product">
+                    <h2>Медицинский центр МУА</h2>
+                    <div class="product-image">
+                        <img src="{% static 'images/h6.jpg' %}" width="200px" height="200px" alt="6">
+                    </div>
+                    <p class="price">Сарыарка, 33</p>
+                    <p class="price">+77084250059</p>
+                    <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                    <button class="glow-on-hover"><a href="{% url 'mua' %}">Доктора</a></button>
+
+                </div>
+    
+                
+    
+                    
+                </div>
+            </section>
+        </main>
+        <main>
+            <section class="products">
+                <div class="product-row">
+                    <div class="product">
+                        <h2>Стоматология Ержигит</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h7.jpg' %}" width="200px" height="200px"alt="7">
+                        </div>
+                        <p class="price">Кайым Мухамедханов, 20/1</p>
+                        <p class="price">+77085000348</p>
+                        
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'erzh' %}">Доктора</a></button>
+                    </div>
+    
+                    <div class="product">
+                        <h2>Международный онкологический центр томотерапии "ҮМІТ"</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h8.avif' %}" width="200px" height="200px"  alt="8">
+                        </div>
+                        <p class="price">Абылай хана, 42/1</p>
+                        <p class="price">+77772014444</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'ymit' %}">Доктора</a></button>
+                    </div>
+                </div>
+    
+                <div class="product-row">
+                    <div class="product">
+                        <h2>Поликлиника "Жанұя"</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h9.jpg' %}" width="200px" height="200px" alt="9">
+                        </div>
+                        <p class="price">Абикен Бектуров, 4</p>
+                        <p class="price">+77172697194</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'zhan' %}">Доктора</a></button>
+                    </div>
+    
+                    <div class="product">
+                        <h2>Медицинский центр "DAMU CLINIC"</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h10.jpg' %}" width="200px" height="200px" alt="10">
+                        </div>
+                        <p class="price">Кенесары, 50</p>
+                        <p class="price">+77172779414</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'damu' %}">Доктора</a></button>
+                    </div>
+                </div>
+    
+                <div class="product-row">
+                    <div class="product">
+                        <h2>Медицинский центр "ANSAR"</h2>
+                        <div class="product-image">
+                            <img src="{% static 'images/h11.jpg' %}" width="200px" height="200px" alt="11">
+                        </div>
+                        <p class="price">Сыганак, 43</p>
+                        <p class="price">+77008366894</p>
+                        <button class="glow-on-hover"><a href="{% url 'hospital_form' %}">Записаться</a></button>
+                        <button class="glow-on-hover"><a href="{% url 'ansar' %}">Доктора</a></button>
+                    </div>
+    
+                   
+                </div>
+            </section>
+        </main>
+
+    <div class="footer">
+        <p>&copy; KazPharm 2023</p>
+    </div>
+    
+        <script>
+            // Function to open a modal by ID
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "block";
+    }
+    
+    // Function to close a modal by ID
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "none";
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        // Attach event listeners to "Подробнее" buttons
+        const detailButtons = document.querySelectorAll(".glow-on-hover");
+        detailButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const modalId = this.getAttribute("data-modal-id");
+                openModal(modalId);
+            });
+        });
+    
+        // Attach event listeners to close buttons (e.g., the "x" icon)
+        const closeButtons = document.querySelectorAll(".close");
+        closeButtons.forEach(function (closeButton) {
+            closeButton.addEventListener("click", function () {
+                const modalId = this.getAttribute("data-modal-id");
+                closeModal(modalId);
+            });
+        });
+    });
+    
+    
+    // Функция для отображения алерта
+    function showAlert(message) {
+        alert(message);
+    }
+    
+                    const header = document.querySelector('header');
+            let lastScroll = 0;
+    
+            window.onscroll = function() {
+        var button = document.getElementById('scrollToTopButton');
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          button.style.display = 'block';
+        } else {
+          button.style.display = 'none';
+        }
+      };
+      
+      // Плавная анимация прокрутки страницы вверх при клике на кнопку
+      document.getElementById('scrollToTopButton').addEventListener('click', function() {
+        scrollToTop();
+      });
+      
+      function scrollToTop() {
+        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (currentScroll > 0) {
+          window.requestAnimationFrame(scrollToTop);
+          window.scrollTo(0, currentScroll - currentScroll / 8); // Здесь можно настроить скорость анимации, уменьшив или увеличив шаг деления
+        }
+      }
+      
+        </script>
+</body>
+</html>

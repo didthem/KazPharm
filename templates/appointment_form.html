@@ -1,0 +1,183 @@
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/pharm.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/png">
+</head>
+<body>
+<div class="header">
+  <p>
+    <img src="/static/images/KazPharmEm.png" alt="KazPharm logo" height="100px" width="100px">
+  </p>
+  <div class="header-text">
+    <li><a href="{% url 'index' %}">Главная</a></li>
+    <li><a href="{% url 'hospital_form' %}">Запись</a></li>
+    <li><a href="{% url 'about' %}">Больницы</a></li>
+    <li><a href="https://t.me/KazPharmAmbulanceBot">Контакты</a></li>
+
+    {% if request.user.is_authenticated %}
+            <li><a href="#"> {{ user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Выйти</a></li>
+        {% else %}
+
+            <li><a href="{% url 'logout' %}">Выйти</a></li>
+           <color="white"> <li><a href="{% url 'home' %}"> {{ user.username }}</a></li>
+          <!-- </font> -->
+        {% endif %}
+  </div>
+</div>
+<div class="footer">
+<p>&copy; KazPharm 2023</p>
+</div>
+<style>
+.header {
+    /* width: 80%; */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    background-color:#133657;
+    padding: 0 20px;
+    color: #ffffff;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header-text {
+    display: flex;
+}
+
+.header-text :hover {
+    color: rgb(94, 163, 227);
+}
+
+.header-text li {
+    margin-left: 20px;
+    font-size: 15px;
+    padding-right: 30px;
+}
+
+body {
+  background-image: url("{% static 'images/11.jpg' %}");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #133657;
+  height: 100vh;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  background-attachment: fixed;
+}
+
+.footer {
+    background-color:#133657;
+    color: aliceblue;
+    padding: 15px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+  }
+
+/* ЗАПИСЬ */
+
+/* Normalize styles for consistent cross-browser rendering */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 400; /* Slightly lighter heading for visual hierarchy */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #091b2b;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  background-color: #133657; /* Primary blue color for emphasis */
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Optional: Add subtle hover effect for interactivity */
+input[type="submit"]:hover {
+  background-color: #091b2b; /* Slightly darker blue on hover */
+}
+
+</style>
+
+<h2>Выбранная больница: {{ hospital.title }}</h2><br>
+
+<form method="post" action="{% url 'appointment_form' %}">
+    {% csrf_token %}
+    <input type="hidden" name="hospital_id" value="{{ hospital.id }}">
+
+    <label for="id_doctor">Врач:</label>
+    <select name="doctor_id" id="id_doctor" required>
+        {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">{{ doctor.first_name }} {{ doctor.last_name }}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+
+    <label for="id_date">Дата записи:</label>
+    <input type="date" name="date" id="id_date" required>
+
+    <br>
+
+    <label for="id_time">Время записи:</label>
+    <input type="time" name="time" id="id_time" required>
+
+    <br>
+
+    <input type="submit" value="Записаться">
+</form>
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

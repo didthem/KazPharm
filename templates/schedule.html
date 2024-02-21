@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Успешно записано
+{% endblock %}
+
+{% block content %}
+
+{% for i in appointments %}
+<div class="appointments"></div>
+⠀⠀⠀⠀Клиника в которую вы записались:⠀{{i.hospital.title}}<br>
+⠀⠀⠀⠀Имя доктора:⠀{{i.doctor.first_name}}<br>
+⠀⠀⠀⠀Фамилия доктора:⠀{{i.doctor.last_name}}<br>
+⠀⠀⠀⠀Дата записи:⠀{{i.date}}<br>
+⠀⠀⠀⠀Время записи⠀{{i.time}}<br><br> 
+</div>
+
+
+{% endfor %}
+{% endblock %}
